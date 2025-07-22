@@ -26,7 +26,7 @@ app.get('/health', (req, res) => {
     status: 'online',
     timestamp: new Date().toISOString(),
     uptime: process.uptime(),
-    message: 'Backend CNH Social funcionando perfeitamente'
+    message: 'Backend CNH Social funcionando perfeitamente no Railway'
   });
 });
 
@@ -36,6 +36,7 @@ app.get('/status', (req, res) => {
     service: 'CNH Social Backend',
     version: '2.0.0',
     status: 'online',
+    platform: 'Railway',
     environment: process.env.NODE_ENV || 'production',
     timestamp: new Date().toISOString(),
     uptime: process.uptime(),
@@ -49,7 +50,7 @@ app.get('/status', (req, res) => {
 app.get('/test', (req, res) => {
   res.json({
     success: true,
-    message: 'Backend CNH Social - Teste OK',
+    message: 'Backend CNH Social - Teste OK (Railway)',
     timestamp: new Date().toISOString(),
     data: {
       amount: 6472, // R$ 64,72 em centavos
@@ -72,9 +73,10 @@ app.get('/test', (req, res) => {
 // Endpoint raiz
 app.get('/', (req, res) => {
   res.json({
-    message: 'CNH Social Backend API',
+    message: 'CNH Social Backend API (Railway)',
     version: '2.0.0',
     status: 'online',
+    platform: 'Railway',
     endpoints: {
       health: '/health',
       status: '/status',
@@ -113,7 +115,7 @@ app.post('/aureolink/create', (req, res) => {
   
   res.json({
     success: true,
-    message: 'Transação criada com sucesso',
+    message: 'Transação criada com sucesso (Railway)',
     transaction_id: 'txn_' + Date.now(),
     amount: amount,
     customer: customer,
@@ -141,7 +143,7 @@ app.use((req, res) => {
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
-  console.log(`🚀 Backend CNH Social rodando na porta ${PORT}`);
+  console.log(`🚀 Backend CNH Social rodando na porta ${PORT} (Railway)`);
   console.log(`📊 Health check: http://localhost:${PORT}/health`);
   console.log(`🔍 Status: http://localhost:${PORT}/status`);
   console.log(`🧪 Teste: http://localhost:${PORT}/test`);
